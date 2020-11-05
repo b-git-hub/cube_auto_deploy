@@ -40,7 +40,7 @@ class Add_IP_Routes:
 ios_connection_details = {"device_type": "cisco_ios"}
 input_ip_addr = input("Input the IP/DNS of the CUBE: ")
 input_username = input("Input username: ")
-input_password = getpass("Input password: ")
+input_password = getpass("input password: ")
 
 #Build the SSH connection to the CUBE with Netmiko
 ios_connection_details["ip"] = input_ip_addr
@@ -96,7 +96,7 @@ while True:
         external_ip = external_ip[f"{external_cube_interface}"]["ipv4"]
         for key in external_ip.items():
             external_ip  = key[0]
-            print (f"The following IP has been detected as the external IP {external_ip}")
+            print (f"The following IP has been detected as the internal IP {external_ip}")
             break
         break
     else:
