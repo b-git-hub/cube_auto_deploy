@@ -96,7 +96,7 @@ while True:
         external_ip = external_ip[f"{external_cube_interface}"]["ipv4"]
         for key in external_ip.items():
             external_ip  = key[0]
-            print (f"The following IP has been detected as the internal IP {external_ip}")
+            print (f"The following IP has been detected as the external IP {external_ip}")
             break
         break
     else:
