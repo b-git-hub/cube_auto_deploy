@@ -25,10 +25,11 @@ The program is very much still in beta. I've not implemented error handling to c
 This will come in future iterations, this for the moment will deploy your CUBE provided you follow the prompts correctly.
 
     The operator of this code will need access to the CUBE via SSH
+    ![Capture](https://user-images.githubusercontent.com/68473827/98389089-80c59300-204b-11eb-90a4-11e0396d3d94.JPG)
     
     
 # Call Flow
-The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP
+The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP without any manipulation other than signalling and media which is required to send/recieve calls
 ![Capture](https://user-images.githubusercontent.com/68473827/98388699-fed56a00-204a-11eb-94f2-9695e7230427.JPG)
 
     
