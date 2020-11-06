@@ -5,6 +5,7 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
     Python 3.8
     NAPALM
     Netmiko
+    requirements.txt 
 
 # Running the code
     git clone https://github.com/b-git-hub/cube_auto_deploy/cube_deploy.py
@@ -53,3 +54,125 @@ The call flow is very simple, it takes the call from CUCM via any means and pass
     itsp_route_ip = Route to use to forward traffic to ITSP SIP gateway
     itsp_signalling_protocol = ITSP signalling protocol(udp/tcp)
     dial_peer_range = Dial-Peer numbering . It will ask for a single number and create 4 dialpeer 1 after another a.g 1000 will result in 1000,1001,1002 and 1003   being created 
+
+# Successful Output
+    When the program has ran a successful out put will look like the below. The program will produce this for you. I've excluded any irrelevant configuration
+
+    voice service voip
+    ip address trusted list
+    ipv4 1.1.1.2 255.255.255.255
+    ipv4 1.1.1.3 255.255.255.255
+    ipv4 2.2.2.3 255.255.255.255    <--- IPs of CUCM/ITSP for signalling
+    address-hiding
+    allow-connections sip to sip
+    no supplementary-service sip moved-temporarily
+    no supplementary-service sip refer
+    supplementary-service media-renegotiate
+    redirect ip2ip
+    fax protocol pass-through g711ulaw
+    sip
+    session refresh
+    asserted-id pai
+    early-offer forced
+    midcall-signaling passthru
+    pass-thru subscribe-notify-events all
+    pass-thru content unsupp
+    sip-profiles inbound
+    !
+    !
+    voice class uri FromCUCM sip
+    host ipv4:1.1.1.2
+    host ipv4:1.1.1.3
+    !
+    voice class uri FromITSP sip 
+    host ipv4:2.2.2.3
+    voice class codec 1
+     codec preference 1 g711alaw
+    codec preference 2 g711ulaw
+    !
+    !
+    !
+    voice class dpg 1000
+    dial-peer 1001
+    !
+    voice class dpg 1002
+    dial-peer 1003
+    !
+    voice class server-group 1001
+    ipv4 2.2.2.3 preference 1
+    !
+    voice class server-group 1003
+    ipv4 1.1.1.2 preference 1
+    ipv4 1.1.1.3 preference 2
+
+    interface GigabitEthernet2
+    ip address 1.1.1.1 255.255.255.0
+    negotiation auto
+    no mop enabled
+    no mop sysid
+    !
+    interface GigabitEthernet3
+    ip address 2.2.2.2 255.255.255.0
+    negotiation auto
+    no mop enabled
+    no mop sysid
+    !
+
+    ip route 2.2.2.3 255.255.255.255 GigabitEthernet3 2.2.2.3
+    ip route 2.2.2.4 255.255.255.255 GigabitEthernet3 2.2.2.3
+    dial-peer voice 1000 voip
+    description Incoming from CUCM
+    session protocol sipv2
+    session transport tcp
+    destination dpg 1000
+    incoming uri via FromCUCM
+    voice-class codec 1  
+    voice-class sip options-keepalive
+    voice-class sip bind control source-interface GigabitEthernet2
+    voice-class sip bind media source-interface GigabitEthernet2
+    dtmf-relay rtp-nte
+    fax protocol pass-through g711ulaw
+    no vad
+    !
+    dial-peer voice 1001 voip
+    description Outbound to ITSP
+    destination-pattern 99999999$
+    session protocol sipv2
+    session transport udp
+    session server-group 1001
+    voice-class codec 1  
+    voice-class sip options-keepalive
+    voice-class sip bind control source-interface GigabitEthernet3
+    voice-class sip bind media source-interface GigabitEthernet3
+    dtmf-relay rtp-nte
+    fax protocol pass-through g711ulaw
+    no vad
+    !
+    dial-peer voice 1002 voip
+    description Incoming from ITSP
+    session protocol sipv2
+    session transport udp
+    destination dpg 1002
+    incoming uri via FromITSP
+    voice-class codec 1  
+    voice-class sip options-keepalive
+    voice-class sip bind control source-interface GigabitEthernet3
+    voice-class sip bind media source-interface GigabitEthernet3
+    dtmf-relay rtp-nte
+    fax protocol pass-through g711ulaw
+    no vad
+
+    dial-peer voice 1003 voip
+    description Outbound to ITSP
+    destination-pattern 99999999$
+    session protocol sipv2
+    session transport tcp
+    session server-group 1003
+    voice-class codec 1  
+    voice-class sip options-keepalive
+    voice-class sip bind control source-interface GigabitEthernet2
+    voice-class sip bind media source-interface GigabitEthernet2
+    dtmf-relay rtp-nte
+    fax protocol pass-through g711ulaw
+    no vad
+
