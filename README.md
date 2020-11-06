@@ -27,7 +27,7 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
     
 # Call Flow
 The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP
-![alt text](https://ibb.co/7XXDLBQ)
+https://user-images.githubusercontent.com/68473827/98388505-c3d33680-204a-11eb-9587-e98abf10ac02.JPG
     
 # Assumptions - Hardware 
     This code was tested on CSR and ISR4331. It should function on any Cisco device that supports CUBE as it is using it's standard commands
