@@ -57,7 +57,7 @@ The call flow is very simple, it takes the call from CUCM via any means and pass
     dial_peer_range = Dial-Peer numbering . It will ask for a single number and create 4 dialpeer 1 after another a.g 1000 will result in 1000,1001,1002 and 1003   being created 
 
 # Successful Output
-    When the program has ran a successful out put will look like the below. The program will produce this for you. I've excluded any irrelevant configuration and my comments on the code can be seen with ()
+    When the program has ran, on success the output will look like the below. The program will produce this for you. I've excluded any irrelevant configuration and my comments on the code can be seen with ()
 
     voice service voip
     ip address trusted list
