@@ -56,13 +56,13 @@ The call flow is very simple, it takes the call from CUCM via any means and pass
     dial_peer_range = Dial-Peer numbering . It will ask for a single number and create 4 dialpeer 1 after another a.g 1000 will result in 1000,1001,1002 and 1003   being created 
 
 # Successful Output
-    When the program has ran a successful out put will look like the below. The program will produce this for you. I've excluded any irrelevant configuration
+    When the program has ran a successful out put will look like the below. The program will produce this for you. I've excluded any irrelevant configuration and my comments on the code can be seen with ()
 
     voice service voip
     ip address trusted list
     ipv4 1.1.1.2 255.255.255.255
     ipv4 1.1.1.3 255.255.255.255
-    ipv4 2.2.2.3 255.255.255.255    <--- IPs of CUCM/ITSP for signalling
+    ipv4 2.2.2.3 255.255.255.255    (IPs of CUCM/ITSP for signalling any IPs not listed will get rejected)
     address-hiding
     allow-connections sip to sip
     no supplementary-service sip moved-temporarily
@@ -80,11 +80,11 @@ The call flow is very simple, it takes the call from CUCM via any means and pass
     sip-profiles inbound
     !
     !
-    voice class uri FromCUCM sip
+    voice class uri FromCUCM sip (IPs/DNS of all CUCM nodes inputted during run time)
     host ipv4:1.1.1.2
     host ipv4:1.1.1.3
     !
-    voice class uri FromITSP sip 
+    voice class uri FromITSP sip (ITSP IP address)
     host ipv4:2.2.2.3
     voice class codec 1
      codec preference 1 g711alaw
@@ -118,7 +118,7 @@ The call flow is very simple, it takes the call from CUCM via any means and pass
     no mop sysid
     !
 
-    ip route 2.2.2.3 255.255.255.255 GigabitEthernet3 2.2.2.3
+    ip route 2.2.2.3 255.255.255.255 GigabitEthernet3 2.2.2.3  (Static routes to providers IPs via the gateway provided during runtime)
     ip route 2.2.2.4 255.255.255.255 GigabitEthernet3 2.2.2.3
     dial-peer voice 1000 voip
     description Incoming from CUCM
