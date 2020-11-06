@@ -1,7 +1,7 @@
 # cube_auto_deploy
 Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and pass them out a neccessary outbound dial-peer.
 
-# Prerequirements
+# Software Requirements
     Python 3.8
     NAPALM
     Netmiko
@@ -10,12 +10,21 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
     git clone https://github.com/b-git-hub/cube_auto_deploy/cube_deploy.py
     python cube_deploy.py
 
-# Assumptions - You as a user
+# Information required to run
     The program assumes that you already have the below information 
     IP Address of CUBE
     Username/Password
     ITSP media, signalling and gateway IP to provider
     Signalling protocols being used
+    
+# Operation
+    This program will configure CUBE and deploy 4 dial-peers, using server groups and dpgs any calls destined from the CUCM to the ITSP will automatically
+    be sent to the ITSP and visa versa.
+    There isn't any manipulation of the calls being used, the program assumes that none is required.
+    There isn't any manipulation of SIP headers involved. If these are required, configure them seperately. 
+    The program is very much still in beta. I've not implemented error handling to capture in the event users put in IPs instead of a signalling protocol.
+    This will come in future iterations, this for the moment will deploy your CUBE provided you follow the prompts correctly.
+    
 # Assumptions - Hardware 
     This code was tested on CSR and ISR4331. It should function on any Cisco device that supports CUBE as it is using it's standard commands
 # Enviornment Variables
@@ -36,7 +45,3 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
     itsp_route_ip = Route to use to forward traffic to ITSP SIP gateway
     itsp_signalling_protocol = ITSP signalling protocol(udp/tcp)
     dial_peer_range = Dial-Peer numbering . It will ask for a single number and create 4 dialpeer 1 after another a.g 1000 will result in 1000,1001,1002 and 1003   being created 
-
-# License
-Copyright (C) 2020 Brian McBride
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software           Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
