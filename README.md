@@ -9,6 +9,7 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
 
 # Running the code
     git clone https://github.com/b-git-hub/cube_auto_deploy/cube_deploy.py
+    pip install requirements.txt 
     python cube_deploy.py
 
 # Information required to run
