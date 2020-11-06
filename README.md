@@ -18,12 +18,14 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
     Signalling protocols being used
     
 # Operation
-    This program will configure CUBE and deploy 4 dial-peers, using server groups and dpgs any calls destined from the CUCM to the ITSP will automatically
-    be sent to the ITSP and visa versa.
-    There isn't any manipulation of the calls being used, the program assumes that none is required.
-    There isn't any manipulation of SIP headers involved. If these are required, configure them seperately. 
-    The program is very much still in beta. I've not implemented error handling to capture in the event users put in IPs instead of a signalling protocol.
-    This will come in future iterations, this for the moment will deploy your CUBE provided you follow the prompts correctly.
+This program will configure CUBE and deploy 4 dial-peers, using server groups and dpgs any calls destined from the CUCM to the ITSP will automatically be sent to the ITSP and visa versa.
+There isn't any manipulation of the calls being used, the program assumes that none is required.
+There isn't any manipulation of SIP headers involved. If these are required, configure them seperately. 
+The program is very much still in beta. I've not implemented error handling to capture in the event users put in IPs instead of a signalling protocol.
+This will come in future iterations, this for the moment will deploy your CUBE provided you follow the prompts correctly.
+
+    The operator of this code will need access to the CUBE via SSH
+    
     
 # Call Flow
 The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP
