@@ -11,7 +11,7 @@ Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and 
     python cube_deploy.py
 
 # Assumptions
-The program assumes that you already have the below information 
+    The program assumes that you already have the below information 
     IP Address of CUBE
     Username/Password
     ITSP media, signalling and gateway IP to provider
