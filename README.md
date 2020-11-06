@@ -31,7 +31,7 @@ This will come in future iterations, this for the moment will deploy your CUBE p
     
     
 # Call Flow
-The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP without any manipulation other than signalling and media which is required to send/recieve calls. Matching from a CUBE perspective is done via the URI headers. This means 
+The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP without any manipulation other than binding signalling and media which is required to send/recieve calls. The program will also deploy dial-peers in the opposite direction to accept calls from the ISP and pass them to the CUCM. Matching from a CUBE perspective is done via the URI headers.  
 ![Capture](https://user-images.githubusercontent.com/68473827/98388699-fed56a00-204a-11eb-94f2-9695e7230427.JPG)
 
     
