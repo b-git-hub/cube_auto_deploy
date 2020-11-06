@@ -25,7 +25,7 @@ The program is very much still in beta. I've not implemented error handling to c
 This will come in future iterations, this for the moment will deploy your CUBE provided you follow the prompts correctly.
 
     The operator of this code will need access to the CUBE via SSH
-    ![Capture](https://user-images.githubusercontent.com/68473827/98389089-80c59300-204b-11eb-90a4-11e0396d3d94.JPG)
+![Capture](https://user-images.githubusercontent.com/68473827/98389089-80c59300-204b-11eb-90a4-11e0396d3d94.JPG)
     
     
 # Call Flow
