@@ -1,5 +1,5 @@
 # cube_auto_deploy
-Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and pass them out a neccessary outbound dial-peer.
+Program to auto-deploy CUBE. This will capture all calls from the CUCM/ITSP and pass them out a necessary outbound dial-peer. This is achieved by matching on the URI of the CUCM and ITSP. The benefit of matching on URI rather than destination patterns, incoming called/calling, etc is that it allows this solution to be a almost a one size fits all solution. It doesn't matter what country the code is ran in so long as the IPs/DNS are provide this code will accept any type of dialling patterns e.g if it's +44, 900353, 0061, they'll all be accepted and depending on who they're sent from will determine the path the call will take. If you're following Cisco’s best practise of globalising the number to e.164 prior to arriving to the CUBE and the ITSP supports e.164 dialling then this program is the right fit for you. Yes there will be exceptions were certain providers will need SIP profiles and others registrar information, something that I will look to further add as I develop into the future but if you just require a standard CUBE stood up, this will achieve that goal. Codecs supported are g711u/alaw
 
 # Software Requirements
     Python 3.8
@@ -31,7 +31,7 @@ This will come in future iterations, this for the moment will deploy your CUBE p
     
     
 # Call Flow
-The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP without any manipulation other than signalling and media which is required to send/recieve calls
+The call flow is very simple, it takes the call from CUCM via any means and passes it through the CUBE to the ITSP without any manipulation other than signalling and media which is required to send/recieve calls. Matching from a CUBE perspective is done via the URI headers. This means 
 ![Capture](https://user-images.githubusercontent.com/68473827/98388699-fed56a00-204a-11eb-94f2-9695e7230427.JPG)
 
     
