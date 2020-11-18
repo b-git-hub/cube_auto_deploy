@@ -202,7 +202,7 @@ ios_connection.send_config_set(config_commands)
 
 #Outgoing dial-peer from CUCM to ITSP 
 config_commands = [
-    f"dial-peer voice {dial_peer_list[1]} voip", "description Outbound to CUCM", 
+    f"dial-peer voice {dial_peer_list[1]} voip", "description Outbound to ITSP", 
     "session protocol sipv2", f"session transport {itsp_signalling_protocol}",
     f"destination-pattern 99999999$", f"session server-group {dial_peer_list[1]}",
     "voice-class codec 1", "voice-class sip options-keepalive",
@@ -226,7 +226,7 @@ ios_connection.send_config_set(config_commands)
 
 #Outgoing dial-peer from ITSP to CUCM 
 config_commands = [
-    f"dial-peer voice {dial_peer_list[3]} voip", "description Outbound to ITSP", 
+    f"dial-peer voice {dial_peer_list[3]} voip", "description Outbound to CUCM", 
     "session protocol sipv2", f"session transport {cucm_signalling_protocol}",
     f"destination-pattern 99999999$", f"session server-group {dial_peer_list[3]}",
     "voice-class codec 1", "voice-class sip options-keepalive",
